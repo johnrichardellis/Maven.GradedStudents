@@ -9,22 +9,16 @@ public class Student {
     // part 1.1
     private String firstName;
     private String lastName;
-    private ArrayList<Double> examScores;
-    Double[] testScores;
-
-    public Student(String firstName, String lastName, Double[] examScores) {
-    }
-
-
+    private ArrayList<Double> testScores;
 
 
     // part 1.2
-    public void Student(String firstName, String lastName, Double[] examScores) {
+    public Student(String firstName, String lastName, Double[] testScores) {
+
         this.firstName = firstName;
         this.lastName = lastName;
-        this.examScores = new ArrayList<Double>(Arrays.asList(examScores));  // turning Double[] to arraylist
+        this.testScores = new ArrayList<Double>(Arrays.asList(testScores));
     }
-
 
 
     // part 1.3
@@ -44,49 +38,55 @@ public class Student {
         this.lastName = lastName;
     }
 
-    public ArrayList<Double> getTestScores() {
-        return examScores;
+    public String getExamScores() {
+
+        String result = "";
+        for (int i = 0; i < testScores.size(); i++) {
+             result = result + "Exam " + (i + 1) + " score: " + testScores.get(i) + "\n";
+        }
+        return result;
+
     }
 
     public Integer getNumberOfExamsTaken() {
-        return examScores.size();
+        return testScores.size();
     }
 
-    public String getExamScores() {
-        String result = "Exam Scores: /n";
+//    public String getExamScores() {
+//        String result = "";
+//
+//        for (int i = 0; i < testScores.size(); i++) {
+//            result = result + "Exam " + (i + 1) + " score: " + testScores.get(i) + "\n";
+//        }
+//        return result;
+//    }
 
-        for (int i = 0; i < examScores.size(); i++) {
-            result = result + "Exam " + (i + 1) + "->";
-            result = result + examScores.get(i) + "\n";
 
-        }
-        return result;
+    public void addExamScore(Double examScore) {
+        testScores.add(examScore);
     }
 
 
-    public void addExamScore(double examScore) {
-        this.examScores.add(examScore);
-    }
+    public void setExamScore(Integer examNumber, Double newScore) {
 
-
-    public void setExamScore(int examNumber, double newScore) {
-        examScores.set(examNumber, newScore);
+        testScores.set(examNumber - 1, newScore);
     }
 
     public Double getAverageExamScore() {
         Double result = 0.0;
-        for (int i = 0; i < examScores.size(); i++) {
-            result = result + examScores.get(i);
+        for (int i = 0; i < testScores.size(); i++) {
+            result = result + testScores.get(i);
         }
-        return result / examScores.size();
+        return result / testScores.size();
     }
 
     @Override
     public String toString() {
-        String result = "Student: " + firstName + " " + lastName + "\n";
-        result = result + "> Average Score: " + this.getAverageExamScore() + "\n";
-        result = result + "> " + getExamScores();
+        String string = "";
+        String result = string += "Student name: " + firstName + " " + lastName + "\n" +
+                "> Avg Score: " + this.getAverageExamScore() + "\n" + "> Exam scores: " +
+                this.getExamScores() + "\n";
 
-        return result;
+        return string;
     }
 }

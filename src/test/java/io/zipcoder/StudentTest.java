@@ -6,64 +6,19 @@ import org.junit.Test;
 public class StudentTest {
 
     @Test
-    public void testStudentConstructor() {
-        // Given
-        String firstName = "Leon";
-        String lastName = "Hunter";
-        Double[] examScores = {100.0, 95.0, 123.0, 96.0};
-        Student student = new Student(firstName, lastName, examScores);
+    public void testAddExam() {
+        // given
+        Double[] examScore = {};
+        Student student = new Student("Larry", "Lance", examScore);
 
-        // When
-        String expectedFirstName = student.getFirstName();
-        String expectedLastName = student.getLastName();
+        // when
+        student.addExamScore(88.0);
+        String expected = "Exam " + 1 + " score: " + 88.0 + "\n";
 
-        // Then
-        Assert.assertEquals(expectedFirstName, firstName);
-        Assert.assertEquals(expectedLastName, lastName);
+        // then
+        Assert.assertEquals(expected, student.getExamScores());
+
     }
-
-    @Test
-    public void testStudentConstructor2() {
-        // Given
-        String firstName = "Leon";
-        String lastName = "Hunter";
-        Double[] examScores = {100.0, 95.0, 123.0, 96.0};
-        Student student = new Student(firstName, lastName, examScores);
-
-        // When
-        student.setFirstName("John");
-        student.setLastName("Ellis");
-        String expectedFirstName = "John";
-        String expectedLastName = "Ellis";
-        String actualFirstName = student.getFirstName();
-        String actualLastName = student.getLastName();
-
-        // Then
-        Assert.assertEquals(expectedFirstName, actualFirstName);
-        Assert.assertEquals(expectedLastName, actualLastName);
-    }
-
-    @Test
-    public void testGetExamScores() {
-        // Given
-        String firstName = "Leon";
-        String lastName = "Hunter";
-        Double[] examScores = {100.0, 95.0, 123.0, 96.0};
-        Student student = new Student(firstName, lastName, examScores);
-
-        // When
-        student.getTestScores();
-        student.getTestScores();
-        String expectedFirstName = "John";
-        String expectedLastName = "Ellis";
-        String actualFirstName = student.getFirstName();
-        String actualLastName = student.getLastName();
-
-        // Then
-        Assert.assertEquals(expectedFirstName, actualFirstName);
-        Assert.assertEquals(expectedLastName, actualLastName);
-    }
-
 
 
 

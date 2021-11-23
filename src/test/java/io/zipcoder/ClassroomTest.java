@@ -6,27 +6,22 @@ import java.util.Arrays;
 
 public class ClassroomTest {
 
-        @Test
-        public void addStudentTest() {
-            // given
-            int maxNumberOfStudents = 1;
-            Classroom classroom = new Classroom(maxNumberOfStudents);
-            Double[] examScores = { 100.0, 150.0, 250.0, 0.0 };
-            Student student = new Student("John", "Ellis", examScores);
+    @Test
+    public void testAverageExamScore() {
+        // given
+        Double[] stud1Scores = { 95.0, 160.0 };
+        Double[] stud2Scores = { 185.0, 60.0 };
+        Student stud1 = new Student ("student", "one", stud1Scores);
+        Student stud2 = new Student ("student", "two", stud2Scores);
+        Student[] students = { stud1, stud2 };
+        Classroom classroom = new Classroom(students);
 
+        // when
+        double output = classroom.getAverageExamScore();
 
-            // when
-            Student[] enrolledAtStart = classroom.getStudents();;
-            classroom.addStudent(student);
-            Student[] enrolledAtEnd = classroom.getStudents();
-
-
-            // then
-            String enrolledAtStartAsAString = Arrays.toString(enrolledAtStart);
-            String enrolledAtEndAsAString = Arrays.toString(enrolledAtEnd);
-
-        }
-
+        // then
+        System.out.println(output);
+    }
 
 
 

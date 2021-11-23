@@ -6,24 +6,24 @@ import java.util.List;
 
 public class Classroom {
 
-    private Student[] students;
-    int maxNUmberOfStudents;
+    private Student[] student;
+    private Integer maxNUmberOfStudents;
 
-    public void Classroom(int maxNUmberOfStudents) {
-        this.maxNUmberOfStudents = maxNUmberOfStudents;
+    public Classroom(int maxNUmberOfStudents) {
+        this.student = new Student[maxNUmberOfStudents];
     }
 
-    public void Classroom(Student[] students) {
-        this.students = students;
+    public Classroom(Student[] students) {
+        this.student = students;
     }
 
     // nullary constructor sets empty array size 30
     public void Classroom() {
-        this.students = new Student[30];
+        this.student = new Student[30];
     }
 
     public Student[] getStudents() {
-        return students;
+        return student;
     }
 
     public Double getAverageExamScore() {
@@ -31,21 +31,21 @@ public class Classroom {
         Double sum = 0.0;
 
         // update sum with
-        for (Student student : students) {
+        for (Student thisStudent : student) {
             // loop through students in list adding exam scores to sum
-            sum = sum + student.getAverageExamScore();
+            sum = sum + thisStudent.getAverageExamScore();
         }
         // return the avg score
-        return sum / students.length;
+        return sum / student.length;
     }
 
-    public void addStudent(Student student) {
+    public void addStudent(Student newStudent) {
         // looping through length of students array
-        for (int i = 0; i < students.length; i++) {
+        for (int i = 0; i < student.length - 1; i++) {
             // if the student at i equals null
-            if (students[i] == null) {
+            if (student[i] == null) {
                 // then assign to student variable
-                students[i] = student;
+                student[i] = newStudent;
             }
         }
     }
@@ -53,36 +53,23 @@ public class Classroom {
 
     public void removeStudent(String firstName, String lastName) {
 
-            // create new ArrayList
-        ArrayList<Student> studentList = new ArrayList<>(Arrays.asList(students));
+        // create new ArrayList
+        ArrayList<Student> studentList = new ArrayList<>(Arrays.asList(student));
 
         // loop through studentList we created
-        for (int i = 0; i < studentList.size(); i++) {
-            // made new student equal to studentList at i
-            Student student = studentList.get(i);
-            // if firstName and lastName equal the values when you call .getFirstName and .getLastName on student (at i)
-            if (student.getFirstName().equals(firstName) && student.getLastName().equals(lastName)) {
-                // remove student from list
-                studentList.remove(student);
-                // add null to list bc arraylists cannot change in size at initialized
-                studentList.add(null);
-            }
+        for (int i = 0; i < student.length; i++) {
+            if (student[i].getFirstName().equals(firstName) && student[i].getLastName().equals(lastName)) {
 
+            }
         }
-        this.students = studentList.toArray(new Student[0]);
     }
 
-public Student[] getStudentsByScore() {
+    public void getStudentByScore() {
         // create new arraylist
-    List<Student> studentList = new ArrayList(Arrays.asList(students));
-    return null;
-}
+        Arrays.sort(student);
+    }
 
-public Object getGradeBook() {
-        return null;
-}
+    public void getGradeBook() {
 
-
-
-
+    }
 }
